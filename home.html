@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        body{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+        .nav{
+            width: 100vw;
+            height: 11vh;
+            background-color: blueviolet;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 1.8vw;
+            font-weight: 650;
+        }
+        .nav ul{
+            display: flex;
+            margin-left: 1vw;
+           
+        }
+        .nav ul a {
+              text-decoration: none;
+              color: white;
+        }
+        .nav ul a li {
+            list-style: none;
+            margin-left: 18vw;
+            margin-top: 2.2vh;
+        }
+        .nav ul a li:hover{
+            color:blue;
+        }
+        .homecon{
+            width: 36vw;
+            height: 60vh;
+            border: 0.1vh solid white;
+            border-radius: 1vw;
+            -webkit-box-shadow: 0 0 1vh black;
+                    box-shadow: 0 0 1vh black;
+                    margin: auto;
+                    margin-top: 6vw;
+        }
+        p{
+            font-size: 2.4vw;
+            font-weight: bold;
+            margin-top: 3vw;
+            margin-left: 3vw;
+        }
+        input{
+            width: 20vw;
+            height: 5vh;
+            margin-top: 2vh;
+            margin-left: 3.5vw;
+            border: none;
+            outline: none;
+            border: 0.1vh solid black;
+            border-radius: 0.7vw;
+        }
+        input::placeholder{
+            font-size: 1.4vw;
+            
+            
+        }
+        select{
+            width: 15vw;
+            height: 5vh;
+            font-size: 1.4vw;
+            border-radius: 0.7vw;
+            margin-top: 2vh;
+            margin-left: 3.5vw;
+
+        }
+        button{
+            width: 20vw;
+            height: 5vh;
+            color: white;
+            background-color: blueviolet;
+            font-size: 1.4vw;
+            font-weight: 500;
+            border: none;
+            border: 0.1vh solid blueviolet;
+            border-radius: 5vw;
+            margin-top: 5vh;
+            margin-left: 8vw;
+        }
+        button:hover{
+            background-color: blue;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+           <a href="home.html"> <li>Home</li></a>
+           <a href="contact.html"> <li>Contact List</li></a>
+           <a href="favourites.html"> <li>Favourties</li></a>
+        </ul>
+    </div>
+    <div class="homecon">
+        <p>Enter Your Contact Details</p>
+        <form action="">
+            <input  type="text"  id="nam" placeholder="Enter Contact Name" style="margin-top: 5vh;"/>
+        <input type="text"  id="mob" placeholder="Enter Mobile Number"/>
+        <select  id="typ">
+            <option value="">select type</option>
+            <option value="friends">Friends</option>
+            <option value="family">Family</option>
+            <option value="other">Other</option>
+
+        </select>
+        <button type="submit" onclick="sub()">Submit</button>
+        </form>
+    </div>
+    <script>
+        var typ= document.getElementById("typ")
+        var nam = document.getElementById("nam")
+        var mob = document.getElementById("mob")
+        if(localStorage.getItem("contactList") === null)
+        {
+            localStorage.setItem("contactList",JSON.stringify([]))
+        }
+        function sub()
+        {
+            event.preventDefault();
+            var arr = []
+            arr = JSON.parse(localStorage.getItem("contactList")) 
+            var a  = []
+            a.push(typ.value)
+            a.push(nam.value)
+            a.push(mob.value) 
+            arr.push(a)
+            a = []
+            localStorage.setItem("contactList",JSON.stringify(arr))
+            typ.value = ""
+            nam.value = ""
+            mob.value = ""
+        }
+    </script>
+</body>
+</html>
