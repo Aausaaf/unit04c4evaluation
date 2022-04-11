@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        body{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+        .nav{
+            width: 100vw;
+            height: 11vh;
+            background-color: blueviolet;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 1.8vw;
+            font-weight: 650;
+        }
+        .nav ul{
+            display: flex;
+            margin-left: 1vw;
+           
+        }
+        .nav ul a {
+              text-decoration: none;
+              color: white;
+        }
+        .nav ul a li {
+            list-style: none;
+            margin-left: 18vw;
+            margin-top: 2.2vh;
+        }
+        .nav ul a li:hover{
+            color:blue;
+        }
+        #containers{
+            width: 70vw;
+            margin: auto;
+            border: 0.1vh solid transparent;
+            margin-top: 5vh;
+        }
+        .head{
+            display: flex;
+            width: 70vw;
+            background-color: blueviolet;
+            height: 8vh;
+            border: 0.1vh solid transparent;
+            border-radius: 0.5vw;
+
+        }
+        .headname{
+            width: 22vw;
+            font-size: 1.7vw;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 1.3vh;
+
+            
+        }
+
+        .list{
+            display: flex;
+            width: 70vw;
+            background-color: white;
+            height: 8vh;
+            border: 0.1vh solid #cecece;
+            border-radius: 0.2vw;
+
+        }
+        .listname{
+            width: 22vw;
+            font-size: 1.5vw;
+            color: black;
+            font-weight: 550;
+            text-align: center;
+            margin-top: 1.3vh;
+
+            
+        }
+        .listfeb{
+            width: 22vw;
+            font-size: 1.5vw;
+            color: red;
+            font-weight: 550;
+            text-align: center;
+            margin-top: 1.3vh;
+
+            
+        }
+        .listfeb:hover{
+            color: green;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+           <a href="home.html"> <li>Home</li></a>
+           <a href="contact.html"> <li>Contact List</li></a>
+           <a href="favourites.html"> <li>Favourties</li></a>
+        </ul>
+    </div>
+    <div id="containers">
+
+    </div>
+</body>
+<script>
+    var container = document.getElementById("containers")
+    if(localStorage.getItem("favourites") == null)
+    {
+        localStorage.setItem("favourites",JSON.stringify([]))
+    }
+    var head = document.createElement('div')
+    head.setAttribute("class","head") 
+    var headname = document.createElement('p')
+    headname.setAttribute("class","headname")
+    headname.innerHTML = "Contact Name"
+    var headmob = document.createElement('p')
+    headmob.setAttribute("class","headname")
+    headmob.innerHTML = "Mobile Number"
+    var headtyp = document.createElement('p')
+    headtyp.setAttribute("class","headname")
+    headtyp.innerHTML = "Type"
+   
+    head.append(headname,headmob,headtyp)
+    container.append(head)
+    var Arr = JSON.parse(localStorage.getItem("favourites"))
+    Arr.forEach(data => {
+        var list = document.createElement('div')
+    list.setAttribute("class","list") 
+    var listname = document.createElement('p')
+    listname.setAttribute("class","listname")
+    listname.innerHTML = data[1]
+    var listmob = document.createElement('p')
+    listmob.setAttribute("class","listname")
+    listmob.innerHTML = data[2]
+    var listtyp = document.createElement('p')
+    listtyp.setAttribute("class","listname")
+    listtyp.innerHTML = data[0]
+  
+    
+   
+    list.append(listname,listmob,listtyp)
+    container.append(list)
+        
+    });
+</script>
+</html>
